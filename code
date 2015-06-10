@@ -1,0 +1,53 @@
+void set_and(Mat input1, Mat input2, Mat output)//集合交运算
+{
+	int a = input1.rows;
+	int b = input1.cols;
+	for (int i = 0; i < a; i++)
+	{
+		for (int j = 0; j < b; j++)
+		{
+			output.at<uchar>(i, j) = input1.at<uchar>(i, j) * input2.at<uchar>(i, j) / 255;
+		}
+	}
+}
+
+void set_or(Mat input1, Mat input2, Mat output)//集合并运算
+{
+	int a = input1.rows;
+	int b = input1.cols;
+	for (int i = 0; i < a; i++)
+	{
+		for (int j = 0; j < b; j++)
+		{
+			if (input1.at<uchar>(i, j) == 0 && input2.at<uchar>(i, j) == 0)
+			{
+				output.at<uchar>(i, j) = 0;
+			}
+			else
+			{
+				output.at<uchar>(i, j) = 255;
+			}
+		}
+	}
+}
+
+void set_not(Mat input, Mat output)//集合补
+{
+	int a = input.rows;
+	int b = input.cols;
+	for (int i = 0; i < a; i++)
+	{
+		for (int j = 0; j < b; j++)
+		{
+			if (input.at<uchar>(i, j) == 0)
+			{
+				output.at<uchar>(i, j) = 255;
+			}
+			else
+			{
+				output.at<uchar>(i, j) = 0;
+			}
+
+		}
+	}
+}
